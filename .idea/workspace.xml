@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1bbafaf9-dc2f-4aad-862a-95cedb6bbcc3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Interviewbit/src/maths/numberencoding/Solution.java" afterPath="$PROJECT_DIR$/Interviewbit/src/maths/numberencoding/Solution.java" />
     </list>
@@ -580,6 +579,13 @@
       <option name="number" value="Default" />
       <updated>1455771193522</updated>
     </task>
+    <task id="LOCAL-00001" summary=".idea related files.">
+      <created>1455778185263</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1455778185263</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -615,6 +621,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=".idea related files." />
+    <option name="LAST_COMMIT_MESSAGE" value=".idea related files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
