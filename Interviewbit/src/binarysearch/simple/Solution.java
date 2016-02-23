@@ -2,6 +2,7 @@ package binarysearch.simple;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Sravan on 2/19/16.
@@ -105,6 +106,47 @@ public class Solution {
 
     }
 
+
+    public ArrayList<Integer> searchRange(final List<Integer> a, int b) {
+        int startIndex = -1;
+        int stopIndex = -1;
+        ArrayList<Integer> searchRange = new ArrayList<>();
+        int lowIndex = 0;
+        int highIndex = a.size()-1;
+        while(lowIndex <= highIndex) {
+            int mid = lowIndex + (highIndex - lowIndex)/2;
+            if(b == a.get(mid)) {
+                startIndex = mid;
+            }
+            if(b <= a.get(mid)) {
+                highIndex = mid - 1;
+            }
+            else {
+                lowIndex = mid + 1;
+            }
+        }
+
+        lowIndex = 0;
+        highIndex = a.size()-1;
+        while(lowIndex <= highIndex) {
+            int mid = lowIndex + (highIndex - lowIndex)/2;
+            if(b == a.get(mid)) {
+                stopIndex = mid;
+            }
+            if(b >= a.get(mid)) {
+                lowIndex = mid + 1;
+            }
+            else {
+                highIndex = mid - 1;
+            }
+        }
+
+        searchRange.add(startIndex);
+        searchRange.add(stopIndex);
+
+        return searchRange;
+    }
+
     public static void main(String... args) {
         Solution solution = new Solution();
         ArrayList<ArrayList<Integer>> a = new ArrayList<ArrayList<Integer>>();
@@ -112,12 +154,14 @@ public class Solution {
         ArrayList<Integer> a1 = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 6, 7));
         //ArrayList<Integer> a2 = new ArrayList<Integer>(Arrays.asList(5, 6, 7, 8));
         //ArrayList<Integer> a3 = new ArrayList<Integer>(Arrays.asList(9, 10, 11, 12));
+        ArrayList<Integer> searchRangeList = new ArrayList<Integer>(Arrays.asList(2, 2, 2, 2, 2, 2));
 
         a.add(a1);
         //a.add(a2);
         //a.add(a3);
 
         //System.out.println(solution.searchMatrix(a, 4));
-        System.out.println(solution.searchInsert(a1, 5));
+        //System.out.println(solution.searchInsert(a1, 5));
+        System.out.println(solution.searchRange(searchRangeList, 2));
     }
 }
