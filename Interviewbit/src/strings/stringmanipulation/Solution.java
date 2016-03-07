@@ -1,5 +1,6 @@
 package strings.stringmanipulation;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -32,11 +33,47 @@ public class Solution {
         return isPalindrome;
     }
 
+    public String longestCommonPrefix(ArrayList<String> a) {
+        String lcp = "";
+        int startIndex = 0;
+        int stopIndex = 1;
+        String firstElement = a.get(0);
+
+        while(stopIndex <= firstElement.length()) {
+            String tempLcp = firstElement.substring(startIndex, stopIndex);
+            boolean isLcpPresent = true;
+            for(int i=1; i<a.size(); i++) {
+                if(!a.get(i).contains(tempLcp)) {
+                    isLcpPresent = false;
+                    break;
+                }
+            }
+            if(isLcpPresent) {
+                if(tempLcp.length() > lcp.length()) {
+                    lcp = tempLcp;
+                }
+            }
+            stopIndex++;
+        }
+
+        return lcp;
+    }
+
     public static void main(String... args) {
         Solution solution = new Solution();
+        ArrayList<String> a = new ArrayList<String>();
+        a.add("abcdefgh");
+        a.add("aefghijk");
+        a.add("abcefgh");
+
+        ArrayList<String> b = new ArrayList<String>();
+        b.add("abcdefgh");
+        b.add("abcefgh");
 
         System.out.println(solution.isPalindrome("A man, a plan, a canal: Panama"));
         System.out.println(solution.isPalindrome("race a car"));
+        System.out.println(solution.longestCommonPrefix(a));
+        System.out.println(solution.longestCommonPrefix(b));
     }
 
 
