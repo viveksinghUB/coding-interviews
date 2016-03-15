@@ -195,10 +195,79 @@ public class Solution {
         return 1;
     }
 
+    public String multiply(String a, String b) {
+        /*StringBuilder sb = new StringBuilder();
+        int carry = 0;
+        String sum = "";
+        StringBuilder zeros = new StringBuilder();
+        for(int i=b.length()-1; i>=0; i--) {
+            StringBuilder multipliedVal = new StringBuilder();
+            for(int j=a.length()-1; j>=0; j--) {
+                int b1 = Integer.valueOf(b.charAt(i)-'0');
+                int a1 = Integer.valueOf(a.charAt(j)-'0');
+                int mulVal = a1*b1;
+                if(mulVal < 9 && carry == 0) {
+                    multipliedVal.append(mulVal);
+                }
+                else if(mulVal > 9 && carry == 0) {
+                    String mulValStr = String.valueOf(mulVal);
+                    carry = Integer.valueOf(mulValStr.substring(0, mulValStr.length()-1));
+                    multipliedVal.append(mulValStr.charAt(0));
+                }
+                else if(carry > 0) {
+                    String mulValStr = String.valueOf(mulVal+carry);
+                    carry = Integer.valueOf(mulValStr.substring(0, mulValStr.length()-1));
+                    multipliedVal.append(mulValStr.charAt(0));
+                }
+            }
+            sb.append(multipliedVal.reverse().append(zeros));
+            zeros.append('0');
+
+            if(sum.length() > 0) {
+
+            }
+
+        }
+        return sb.toString();*/
+
+        String n1 = new StringBuilder(a).reverse().toString();
+        String n2 = new StringBuilder(b).reverse().toString();
+
+        int[] d = new int[a.length()+b.length()];
+
+        //multiply each digit and sum at the corresponding positions
+        for(int i=0; i<n1.length(); i++){
+            for(int j=0; j<n2.length(); j++){
+                d[i+j] += (n1.charAt(i)-'0') * (n2.charAt(j)-'0');
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        //calculate each digit
+        for(int i=0; i<d.length; i++){
+            int mod = d[i]%10;
+            int carry = d[i]/10;
+            if(i+1<d.length){
+                d[i+1] += carry;
+            }
+            sb.insert(0, mod);
+        }
+
+        //remove front 0's
+        while(sb.charAt(0) == '0' && sb.length()> 1){
+            sb.deleteCharAt(0);
+        }
+
+        return sb.toString();
+    }
+
     public static void main(String... args) {
         Solution solution = new Solution();
         System.out.println(solution.power("115792089237316195423570985008687907853269984665640564039457584007913129639936"));
         System.out.println(solution.power("2"));
         System.out.println(solution.power("20"));
+
+        System.out.println(solution.multiply("256", "622"));
     }
 }
