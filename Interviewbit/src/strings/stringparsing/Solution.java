@@ -91,11 +91,85 @@ public class Solution {
         return isNumber;
     }
 
+    public int atoi(final String a) {
+        String trimmedInput = a.trim();
+
+        if(trimmedInput.length() < 1) {
+            return 0;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        String maxIntStr = String.valueOf(Integer.MAX_VALUE);
+        String minIntStr = String.valueOf(Integer.MIN_VALUE);
+        boolean isSignedInt = false;
+        Character[] validDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        List<Character> validDigitList = new ArrayList<Character>(Arrays.asList(validDigits));
+
+        char temp = trimmedInput.charAt(0);
+        if(temp == '-' || temp == '+' || validDigitList.contains(temp)) {
+            if(temp != '+') {
+                sb.append(temp);
+            }
+            if(temp == '-') {
+                isSignedInt = true;
+            }
+        }
+        else {
+            return 0;
+        }
+
+        for(int i=1; i<trimmedInput.length(); i++) {
+            temp = trimmedInput.charAt(i);
+            if(validDigitList.contains(temp)) {
+                sb.append(temp);
+            }
+            else {
+                break;
+            }
+        }
+
+        if(sb.length() > maxIntStr.length()) {
+            if(!isSignedInt) {
+                return Integer.MAX_VALUE;
+            }
+            else {
+                return Integer.MIN_VALUE;
+            }
+        }
+        else if(sb.length() == maxIntStr.length() && !isSignedInt) {
+            for(int i=0; i<sb.length(); i++) {
+                if((sb.charAt(i) - '0') > (maxIntStr.charAt(i) - '0')) {
+                    return Integer.MAX_VALUE;
+                }
+            }
+        }
+        else if(sb.length() == minIntStr.length() && isSignedInt) {
+            for(int i=1; i<sb.length(); i++) {
+                if((sb.charAt(i) - '0') > (maxIntStr.charAt(i) - '0')) {
+                    return Integer.MIN_VALUE;
+                }
+            }
+        }
+        else if(sb.length() == 1 && !validDigitList.contains(sb.charAt(0))) {
+            return 0;
+        }
+        else if(sb.length() < 1) {
+            return 0;
+        }
+
+        return Integer.parseInt(sb.toString());
+    }
+
     public static void main(String... args) {
         Solution solution = new Solution();
         System.out.println(solution.compareVersion("13.0", "13.0.8"));
+
         System.out.println(solution.isNumber("-1e-10"));
         System.out.println(solution.isNumber("e"));
         System.out.println(solution.isNumber("e10"));
+
+        System.out.println(solution.atoi("-123545465634%43343ab"));
+        System.out.println(solution.atoi(" 7 U 0 T7165  0128862 089 39 5"));
+        System.out.println(solution.atoi(" + 7"));
     }
 }
