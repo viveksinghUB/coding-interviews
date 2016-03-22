@@ -53,6 +53,39 @@ public class Solution {
         return start;
     }
 
+    public ArrayList<Integer> sortColors(ArrayList<Integer> a) {
+        sort(a, 0, a.size()-1);
+
+        return a;
+    }
+
+    static void sort(ArrayList<Integer> arr, int start, int end) {
+        if (start < end) {
+            int pIndex = partition(arr, start, end);
+            sort(arr, start, pIndex - 1);
+            sort(arr, pIndex + 1, end);
+        }
+    }
+
+    static int partition(ArrayList<Integer> arr, int start, int end) {
+        int pivot = arr.get(end);
+        int pIndex = start;
+        for (int i = start; i < end; i++) {
+            if (arr.get(i) <= pivot) {
+                swap(arr, i, pIndex);
+                pIndex++;
+            }
+        }
+        swap(arr, pIndex, end);
+        return pIndex;
+    }
+
+    static void swap(ArrayList<Integer> arr, int x, int y) {
+        int temp = arr.get(x);
+        arr.set(x, arr.get(y));
+        arr.set(y, temp);
+    }
+
     public static void main(String... args) {
         Solution solution = new Solution();
         Integer[] a = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3};
@@ -65,6 +98,8 @@ public class Solution {
         System.out.println(solution.removeDuplicates_WithAtMost2(new ArrayList<Integer>(Arrays.asList(a))));
         System.out.println(solution.removeDuplicates_WithAtMost2(new ArrayList<Integer>(Arrays.asList(b))));
 
-        System.out.println(solution.removeElement(new ArrayList<Integer>(Arrays.asList(d)), 1));
+        System.out.println(solution.removeElement(new ArrayList<Integer>(Arrays.asList(d)), 1));*/
+
+        System.out.println(solution.sortColors(new ArrayList<Integer>(Arrays.asList(c))));
     }
 }
