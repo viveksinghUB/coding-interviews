@@ -2,8 +2,6 @@ package twopointers.inplaceupdate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 
 /**
  * Created by Sravan on 3/13/16.
@@ -98,7 +96,7 @@ public class Solution {
         System.out.println(solution.removeDuplicates_WithAtMost2(new ArrayList<Integer>(Arrays.asList(a))));
         System.out.println(solution.removeDuplicates_WithAtMost2(new ArrayList<Integer>(Arrays.asList(b))));
 
-        System.out.println(solution.removeElement(new ArrayList<Integer>(Arrays.asList(d)), 1));*/
+        System.out.println(solution.removeElement(new ArrayList<Integer>(Arrays.asList(d)), 1));
 
         System.out.println(solution.sortColors(new ArrayList<Integer>(Arrays.asList(c))));
     }
