@@ -80,6 +80,24 @@ public class Solution {
 
     }
 
+    public int diffPossible(ArrayList<Integer> a, int b) {
+        int resultExists = 0;
+        for(int i=0; i<a.size(); i++) {
+            int j = a.size()-1;
+            while(j > i) {
+                int diff = Math.abs(a.get(i) - a.get(j));
+                if(diff == b) {
+                    return 1;
+                }
+                else {
+                    j--;
+                }
+            }
+        }
+
+        return resultExists;
+    }
+
     public static void main(String... args) {
         Solution solution = new Solution();
 
@@ -88,10 +106,14 @@ public class Solution {
         Integer[] c = {-1, 0, 1, 2, -1, -4};
         Integer[] d = {1, -4, 0, 0, 5, -5, 1, 0, -2, 4, -4, 1, -1, -4, 3, 4, -1, -1, -3};
 
+        Integer[] e = {1, 3, 5};
+
         System.out.println(solution.threeSumClosest(new ArrayList<Integer>(Arrays.asList(a)), 1));
 
         System.out.println(solution.threeSumZero(new ArrayList<Integer>(Arrays.asList(b))));
         System.out.println(solution.threeSumZero(new ArrayList<Integer>(Arrays.asList(c))));
         System.out.println(solution.threeSumZero(new ArrayList<Integer>(Arrays.asList(d))));
+
+        System.out.println(solution.diffPossible(new ArrayList<Integer>(Arrays.asList(e)), 4));
     }
 }
