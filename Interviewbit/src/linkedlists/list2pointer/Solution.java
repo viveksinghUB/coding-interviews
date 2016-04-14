@@ -1,4 +1,4 @@
-package arraylists.list2pointer;
+package linkedlists.list2pointer;
 
 /**
  * Created by Sravan on 4/11/16.
@@ -47,6 +47,33 @@ public class Solution {
         return a;
     }
 
+    public ListNode deleteDuplicates2(ListNode a) {
+
+        if(a == null) {
+            return a;
+        }
+
+        ListNode prev = new ListNode(0);
+        prev.next = a;
+        a = prev;
+
+        ListNode n1=a;
+        while(n1.next != null) {
+            ListNode n2 = n1.next;
+            while(n2.next != null && n2.next.val == n2.val) {
+                n2 = n2.next;
+            }
+            if(n2 != n1.next) {
+                n1.next = n2.next;
+            }
+            else {
+                n1 = n1.next;
+            }
+        }
+
+        return a.next;
+    }
+
     public static void main(String... args) {
         Solution solution = new Solution();
 
@@ -56,8 +83,11 @@ public class Solution {
         head.next.next.next = new ListNode(2);
         head.next.next.next.next = new ListNode(3);
         head.next.next.next.next.next = new ListNode(3);
+        head.next.next.next.next.next.next = new ListNode(4);
 
         solution.deleteDuplicates(head);
+
+        solution.deleteDuplicates2(head);
 
         ListNode listNode1 = new ListNode(1);
         listNode1.next = new ListNode(2);

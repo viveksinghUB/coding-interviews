@@ -1,4 +1,4 @@
-package arraylists.examples;
+package linkedlists.examples;
 
 /**
  * Created by Sravan on 4/11/16.
