@@ -1,9 +1,33 @@
 package linkedlists.list2pointer;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /**
  * Created by Sravan on 4/11/16.
  */
 public class Solution {
+
+    public boolean isPalindrome(ListNode head) {
+        boolean isPalindrome = true;
+        Deque<Integer> stack = new ArrayDeque<Integer>();
+        ListNode l1 = head;
+        while(l1 != null) {
+            stack.push(l1.val);
+            l1 = l1.next;
+        }
+
+        l1 = head;
+        while(l1 != null) {
+            int val = stack.pop();
+            if(val != l1.val) {
+                return false;
+            }
+            l1 = l1.next;
+        }
+
+        return isPalindrome;
+    }
 
     public ListNode mergeTwoLists(ListNode a, ListNode b) {
         ListNode head = new ListNode(Integer.MIN_VALUE);
