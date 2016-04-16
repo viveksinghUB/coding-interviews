@@ -98,6 +98,38 @@ public class Solution {
         return a.next;
     }
 
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if(head == null) {
+            return head;
+        }
+        int size = 0;
+        ListNode temp = head;
+        while(temp != null) {
+            ++size;
+            temp = temp.next;
+        }
+        if(size-n == 0 || n > size) {
+            return head.next;
+        }
+        else {
+            ListNode current = head.next;
+            ListNode previous = head;
+            int removalNode = size - n;
+            int tempInt = 1;
+            while (current != null) {
+                if(tempInt == removalNode) {
+                    previous.next = current.next;
+                    return head;
+                }
+                ++tempInt;
+                previous = current;
+                current = current.next;
+            }
+        }
+
+        return head;
+    }
+
     public static void main(String... args) {
         Solution solution = new Solution();
 
