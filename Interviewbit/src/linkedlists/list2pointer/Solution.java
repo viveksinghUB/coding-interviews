@@ -130,6 +130,77 @@ public class Solution {
         return head;
     }
 
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        if (m != n) {
+            int i = 1;
+
+            ListNode curr = head;
+            ListNode prevHead = null;
+            ListNode tail = null;
+            ListNode prev = null;
+            ListNode next = null;
+
+            while (i < m) {
+                prevHead = curr;
+                curr = curr.next;
+                i++;
+            }
+
+            tail = curr;
+            next = curr.next;
+
+            while (i < n) {
+                prev = curr;
+                curr = next;
+                next = curr.next;
+                curr.next = prev;
+                i++;
+            }
+
+            if (m == 1) {
+                head = curr;
+            }
+            else {
+                prevHead.next = curr;
+            }
+
+            tail.next = next;
+        }
+
+        return head;
+    }
+
+    public ListNode rotateRight(ListNode head, int k) {
+        if(head == null || k == 0) {
+            return head;
+        }
+        ListNode temp = head;
+        int size = 0;
+        while(temp != null) {
+            size++;
+            temp = temp.next;
+        }
+        int t = k % size;
+        if(t == 0) {
+            return head;
+        }
+        else {
+            while(t > 0) {
+                ListNode current = head;
+                ListNode previous = null;
+                while(current.next != null) {
+                    previous = current;
+                    current = current.next;
+                }
+                previous.next = null;
+                current.next = head;
+                head = current;
+                t--;
+            }
+        }
+        return head;
+    }
+
     public static void main(String... args) {
         Solution solution = new Solution();
 
@@ -158,6 +229,15 @@ public class Solution {
         listNode2.next.next.next.next = new ListNode(9);
 
         solution.mergeTwoLists(listNode1, listNode2);
+
+        solution.reverseBetween(listNode1, 2, 4);
+
+        ListNode rotateRightNode = new ListNode(1);
+        rotateRightNode.next = new ListNode(2);
+        rotateRightNode.next.next = new ListNode(3);
+        rotateRightNode.next.next.next = new ListNode(4);
+
+        solution.rotateRight(rotateRightNode, 7);
     }
 
 }
