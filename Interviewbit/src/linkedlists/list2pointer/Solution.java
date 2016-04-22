@@ -2,6 +2,8 @@ package linkedlists.list2pointer;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Sravan on 4/11/16.
@@ -201,6 +203,21 @@ public class Solution {
         return head;
     }
 
+    public ListNode detectCycle(ListNode head) {
+
+        Set<ListNode> hashSet = new HashSet<ListNode>();
+        ListNode l1 = head;
+        while(l1 != null) {
+            boolean isAdded = hashSet.add(l1);
+            if(!isAdded) {
+                break;
+            }
+            l1 = l1.next;
+        }
+
+        return l1;
+    }
+
     public static void main(String... args) {
         Solution solution = new Solution();
 
@@ -238,6 +255,14 @@ public class Solution {
         rotateRightNode.next.next.next = new ListNode(4);
 
         solution.rotateRight(rotateRightNode, 7);
+
+        ListNode cycleNode = new ListNode(1);
+        cycleNode.next = new ListNode(2);
+        cycleNode.next.next = new ListNode(3);
+        cycleNode.next.next.next = new ListNode(4);
+        cycleNode.next.next.next.next = cycleNode.next;
+
+        solution.detectCycle(cycleNode);
     }
 
 }
