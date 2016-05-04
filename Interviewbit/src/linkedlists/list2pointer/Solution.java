@@ -1,5 +1,7 @@
 package linkedlists.list2pointer;
 
+import linkedlists.ListNode;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashSet;
@@ -265,15 +267,4 @@ public class Solution {
         solution.detectCycle(cycleNode);
     }
 
-}
-
-class ListNode {
-
-    public int val;
-    public ListNode next;
-
-    ListNode(int x) {
-        val = x;
-        next = null;
-    }
 }

@@ -1,5 +1,7 @@
 package linkedlists.pointermove;
 
+import linkedlists.ListNode;
+
 /**
  * Created by Sravan on 4/23/16.
  */
@@ -37,17 +39,6 @@ public class Solution {
         head.next.next.next.next = new ListNode(5);
 
         solution.swapPairs(head);
-    }
-}
-
-class ListNode {
-
-    public int val;
-    public ListNode next;
-
-    ListNode(int x) {
-        val = x;
-        next = null;
     }
 }
 
