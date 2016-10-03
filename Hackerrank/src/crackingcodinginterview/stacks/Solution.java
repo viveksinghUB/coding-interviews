@@ -1,7 +1,7 @@
 package crackingcodinginterview.stacks;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -11,72 +11,37 @@ import java.util.Stack;
 public class Solution {
 
     public static boolean isBalanced(String expression) {
-        if(expression.length() %2 != 0) {
+        if(expression.length() %2 != 0 || expression.charAt(0) == '}'
+                || expression.charAt(0) == ']' || expression.charAt(0) == ')') {
             return false;
         }
         else {
-            int angleBracketCounter = 0;
-            int squareBracketCounter = 0;
-            int bracketCounter = 0;
-
+            List<Character> openBraces = Arrays.asList('{', '[', '(');
+            Stack<Character> stack = new Stack<>();
             for(int i=0; i<expression.length(); i++) {
                 Character character = expression.charAt(i);
-                if('{' == character) {
-                    angleBracketCounter++;
+                if(openBraces.contains(character)) {
+                    stack.push(character);
                 }
-                else if('}' == character) {
-                    angleBracketCounter--;
-                }
-                else if('[' == character) {
-                    squareBracketCounter++;
-                }
-                else if(']' == character) {
-                    squareBracketCounter--;
-                }
-                else if('(' == character) {
-                    bracketCounter++;
-                }
-                else if(')' == character) {
-                    bracketCounter--;
+                else if(!stack.isEmpty()) {
+                    Character poppedChar = stack.pop();
+                    if(poppedChar.charValue() == '{' && character.charValue() == '}') {
+                        continue;
+                    }
+                    else if(poppedChar.charValue() == '[' && character.charValue() == ']') {
+                        continue;
+                    }
+                    else if(poppedChar.charValue() == '(' && character.charValue() == ')') {
+                        continue;
+                    }
+                    else {
+                        return false;
+                    }
                 }
             }
-
-            if( angleBracketCounter == 0 && squareBracketCounter == 0 && bracketCounter == 0) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            return stack.isEmpty();
         }
     }
-
-    /*public static boolean isBalanced(String expression) {
-        if(expression.length() %2 != 0) {
-            return false;
-        }
-        else {
-            Stack<Character> stack = new Stack<>();
-            for(int i=0; i<expression.length()/2; i++) {
-                stack.push(expression.charAt(i));
-            }
-            for(int j=expression.length()/2; j<expression.length(); j++) {
-                Character character = stack.pop();
-                if('{' == character && '}' == expression.charAt(j)) {
-                    continue;
-                }
-                else if('[' == character && ']' == expression.charAt(j)) {
-                    continue;
-                }
-                else if('(' == character && ')' == expression.charAt(j)) {
-                    continue;
-                }
-                else {
-                    return false;
-                }
-            }
-            return true;
-        }
-    }*/
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
